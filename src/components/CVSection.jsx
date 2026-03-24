@@ -1,5 +1,3 @@
-
-
 import { motion } from "framer-motion";
 import { Download, Eye, FileText } from "lucide-react";
 
@@ -32,7 +30,7 @@ const CVSection = () => {
                 <span className="text-slate-500 italic font-light">Vitae</span>
               </h2>
               <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">
-                Latest Update: Aug 2025
+                Latest Update: Mar 2026
               </p>
             </div>
           </div>
