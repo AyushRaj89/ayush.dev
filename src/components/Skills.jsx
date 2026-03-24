@@ -1,201 +1,126 @@
-import { motion } from 'framer-motion';
-import { Code2, Wrench, Layers, Brain } from 'lucide-react';
+
+import { motion } from "framer-motion";
+import { Code2, Wrench, Layers, Brain, CheckCircle2 } from "lucide-react";
 
 const skillGroups = [
   {
-    title: "Languages",
-    icon: <Code2 className="w-6 h-6" />,
-    color: "accent",
+    title: "Core Development",
+    icon: <Code2 className="w-5 h-5 text-blue-400" />,
+    description: "Building robust logic and scalable architectures.",
     skills: [
-      {
-        name: "Java",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "C++",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
+      { name: "Java", img: "java/java-original.svg" },
+      { name: "C++", img: "cplusplus/cplusplus-original.svg" },
+      { name: "Node.js", img: "nodejs/nodejs-original.svg" },
     ],
+    className: "md:col-span-2 lg:col-span-2", // Large Card
   },
   {
-    title: "Frameworks & Technologies",
-    icon: <Layers className="w-6 h-6" />,
-    color: "highlight",
-    // skills: ["HTML & CSS", "Tailwind CSS", "Node.js", "React.js"],
+    title: "Frontend",
+    icon: <Layers className="w-5 h-5 text-purple-400" />,
+    description: "Crafting beautiful, responsive interfaces.",
     skills: [
-      {
-        name: "HTML5",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "CSS3",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "Node.js",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-plain-wordmark.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "React.js",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
+      { name: "React.js", img: "react/react-original.svg" },
+      { name: "Tailwind", img: "tailwindcss/tailwindcss-original.svg" },
+      { name: "HTML5", img: "html5/html5-original.svg" },
     ],
+    className: "md:col-span-1 lg:col-span-1", // Small Card
   },
   {
-    title: "Tools & Databases",
-    icon: <Wrench className="w-6 h-6" />,
-    color: "accent",
-    // skills: ["MySQL", "MongoDB"],
+    title: "Infrastructure",
+    icon: <Wrench className="w-5 h-5 text-pink-400" />,
+    description: "Data management and version control.",
     skills: [
-      {
-        name: "MySQL",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "MongoDB",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
-      {
-        name: "Github",
-        icon: (
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
-            className="w-5 h-5"
-          />
-        ),
-      },
+      { name: "MongoDB", img: "mongodb/mongodb-original.svg" },
+      { name: "MySQL", img: "mysql/mysql-original.svg" },
+      { name: "GitHub", img: "github/github-original.svg" },
     ],
+    className: "md:col-span-1 lg:col-span-1",
   },
   {
-    title: "Soft Skills",
-    icon: <Brain className="w-6 h-6" />,
-    color: "highlight",
+    title: "Human Skills",
+    icon: <Brain className="w-5 h-5 text-emerald-400" />,
+    description: "Collaborating and solving complex problems.",
     skills: [
-      { name: "Problem-Solving" },
+      { name: "Problem Solving" },
       { name: "Adaptability" },
-      { name: "Time Management" },
-      { name: "Decision-Making" },
+      { name: "Leadership" },
     ],
+    className: "md:col-span-1 lg:col-span-2",
   },
 ];
 
-const SkillTag = ({ skill, index, color }) => (
-  <motion.span
-    initial={{ opacity: 0, scale: 0.8 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.4, delay: index * 0.05 }}
+const SkillCard = ({ group, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    whileHover={{ scale: 1.1, y: -4 }}
-    className={`inline-block px-5 py-2.5 rounded-full text-sm font-bold tracking-wide cursor-default transition-all duration-300
-      ${
-        color === "accent"
-          ? "bg-accent/10 border border-accent/20 text-accent"
-          : "bg-highlight/10 border border-highlight/20 text-highlight"
-      }`}
+    className={`group relative p-8 rounded-[2rem] bg-white/[0.02] border border-white/10 overflow-hidden hover:bg-white/[0.04] hover:border-white/20 transition-all duration-500 ${group.className}`}
   >
-    <div className="flex items-center gap-2">
-      {skill.icon}
-      <span>{skill.name}</span>
+    {/* Decorative corner glow */}
+    <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 blur-3xl rounded-full group-hover:bg-purple-500/10 transition-colors" />
+
+    <div className="relative z-10">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="p-3 bg-white/5 rounded-2xl border border-white/5 group-hover:scale-110 transition-transform duration-500">
+          {group.icon}
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-white">{group.title}</h3>
+          <p className="text-xs text-slate-500">{group.description}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-3 mt-8">
+        {group.skills.map((skill, i) => (
+          <motion.div
+            key={skill.name}
+            whileHover={{ y: -2 }}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/5 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+          >
+            {skill.img ? (
+              <img
+                src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.img}`}
+                className="w-4 h-4"
+                alt={skill.name}
+              />
+            ) : (
+              <CheckCircle2 size={14} className="text-emerald-500" />
+            )}
+            <span className="font-medium">{skill.name}</span>
+          </motion.div>
+        ))}
+      </div>
     </div>
-  </motion.span>
+  </motion.div>
 );
 
 const Skills = () => {
   return (
-    <section id="skills" className="min-h-screen py-40 px-6 bg-primary relative">
-      {/* Decorative background blur */}
-      <div data-gsap="glow" className="absolute top-1/3 right-0 w-[40vw] h-[40vw] bg-highlight/5 blur-[150px] rounded-full pointer-events-none -z-10"></div>
-      <div data-gsap="glow" className="absolute bottom-1/4 left-0 w-[30vw] h-[30vw] bg-accent/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+    <section
+      id="skills"
+      className="py-32 px-6 bg-[#030303] relative overflow-hidden"
+    >
+      {/* Background Orbs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          className="mb-24"
-        >
-          <h2 className="text-4xl md:text-8xl font-black mb-8 tracking-tighter">
-            My <span className="text-gradient">Skills</span>.
-          </h2>
-          <div data-gsap="divider" className="w-24 h-1.5 bg-gradient-to-r from-accent to-highlight"></div>
-        </motion.div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+          <div>
+            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+              Technical <span className="text-slate-500 italic">Arsenal</span>
+            </h2>
+          </div>
+          <p className="text-slate-500 max-w-xs text-sm leading-relaxed">
+            Continuously evolving my stack to build performant and beautiful
+            digital solutions.
+          </p>
+        </div>
 
-        {/* Skill Groups Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {skillGroups.map((group, groupIndex) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: groupIndex * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true, margin: "-80px" }}
-              className="group glass-card relative overflow-hidden"
-            >
-              {/* Glow effect */}
-              <div className={`absolute top-0 right-0 w-32 h-32 ${group.color === 'accent' ? 'bg-accent/5 group-hover:bg-accent/15' : 'bg-highlight/5 group-hover:bg-highlight/15'} blur-[40px] rounded-full -z-10 transition-all`}></div>
-              
-              {/* Group Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-300
-                  ${group.color === 'accent'
-                    ? 'bg-accent/10 border-accent/20 text-accent group-hover:bg-accent group-hover:text-white group-hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]'
-                    : 'bg-highlight/10 border-highlight/20 text-highlight group-hover:bg-highlight group-hover:text-white group-hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]'
-                  }
-                `}>
-                  {group.icon}
-                </div>
-                <h3 className="text-2xl font-black tracking-tight">{group.title}</h3>
-              </div>
-
-              {/* Skill Tags */}
-              <div className="flex flex-wrap gap-3">
-                {group.skills.map((skill, skillIndex) => (
-                  <SkillTag key={skill} skill={skill} index={skillIndex} color={group.color} />
-                ))}
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skillGroups.map((group, index) => (
+            <SkillCard key={group.title} group={group} index={index} />
           ))}
         </div>
       </div>

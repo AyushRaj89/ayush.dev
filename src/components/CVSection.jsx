@@ -1,50 +1,69 @@
+
+
 import { motion } from "framer-motion";
-import { Download, Eye } from "lucide-react";
+import { Download, Eye, FileText } from "lucide-react";
 
 const CVSection = () => {
-  // 👇 Path to your CV file
-  const cvUrl = "/cv.pdf";
+  const cvUrl = "/cv.pdf"; // Path to your CV
 
   return (
-    <section id="CVSection" className="py-32 px-6 bg-primary relative">
-      <div className="max-w-5xl mx-auto text-center">
-        {/* Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-6xl font-black mb-10"
-        >
-          My <span className="text-gradient">Resume</span>
-        </motion.h2>
+    <section
+      id="CVSection"
+      className="py-20 px-6 bg-[#030303] relative overflow-hidden"
+    >
+      {/* Background Ambient Glow (Small & Focused) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[100px] bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
 
-        {/* Buttons */}
+      <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative group flex flex-col md:flex-row items-center justify-between gap-8 p-8 md:p-10 rounded-[2.5rem] bg-white/[0.02] border border-white/10 backdrop-blur-xl hover:border-purple-500/20 transition-all duration-500"
         >
-          {/* 👁️ View CV */}
-          <a
-            href={cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-accent text-white font-bold hover:scale-105 transition"
-          >
-            <Eye className="w-5 h-5" />
-            View CV
-          </a>
+          {/* Left Side: Info */}
+          <div className="flex items-center gap-6 text-center md:text-left">
+            <div className="hidden sm:flex w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-500">
+              <FileText size={32} />
+            </div>
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tighter mb-1">
+                Curriculum{" "}
+                <span className="text-slate-500 italic font-light">Vitae</span>
+              </h2>
+              <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">
+                Latest Update: Aug 2025
+              </p>
+            </div>
+          </div>
 
-          {/* ⬇️ Download CV */}
-          <a
-            href={cvUrl}
-            download
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-accent text-accent font-bold hover:bg-accent hover:text-white transition"
-          >
-            <Download className="w-5 h-5" />
-            Download CV
-          </a>
+          {/* Right Side: Compact Buttons */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {/* View Button */}
+            <motion.a
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black text-sm font-bold transition-all hover:bg-purple-50 shadow-lg shadow-white/5"
+            >
+              <Eye size={18} />
+              View
+            </motion.a>
+
+            {/* Download Button */}
+            <motion.a
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href={cvUrl}
+              download
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold transition-all hover:bg-white/10"
+            >
+              <Download size={18} />
+              Download
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>
