@@ -4,7 +4,7 @@ import { ArrowRight, Github, Linkedin } from "lucide-react";
 const Hero = () => {
   return (
     // min-h-[90vh] ensures it doesn't fight with your Navbar height
-    <section className="relative min-h-[90vh] flex items-center justify-center bg-[#050505] overflow-hidden px-6 pt-20">
+    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center bg-[#050505] overflow-hidden px-6 pt-20">
       {/* BACKGROUND GLOWS - These are "absolute" so they don't move other elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0" />
 
