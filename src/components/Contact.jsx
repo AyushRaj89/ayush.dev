@@ -52,13 +52,6 @@ const Contact = () => {
       link: "mailto:ayushraj3864@gmail.com",
       color: "text-blue-400",
     },
-    {
-      icon: <Phone size={20} />,
-      label: "Phone",
-      value: "+91 8084386427",
-      link: "tel:+918084386427",
-      color: "text-emerald-400",
-    },
   ];
 
   const socialLinks = [
